@@ -41,7 +41,7 @@ while True:                                                     #loop para mante
             input('------| Pressione Enter para voltar para o Menu |------')
 
         case '3':
-            r_user.clear                                        #reseta as respostas do usuário
+            r_user.clear()                                        #reseta as respostas do usuário
             print('QUIZ: Agora você vai responder a um teste de 5 perguntinhas sobre a síndrome de Kessler!')
 
             # Questão 1
