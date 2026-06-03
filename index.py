@@ -7,11 +7,10 @@ def menu():                                                     #função que ex
     linha()
     print('Escolha entre as opções abaixo:')
     print('1 - Conteúdo sobre a Síndrome de Kessler')
-    print('2 - Quiz de conhecimento sobre a Síndrome de Kessler')
-    print('3 - Gabarito do teste de conhecimento')
+    print('2 - Solução OrbClear')
+    print('3 - Quiz de conhecimento sobre a Síndrome de Kessler')
     print('4 - Seus Resultados')
-    print('5 - Solução OrbClear')
-    print('6 - Encerrar o programa')
+    print('5 - Encerrar o programa')
     opc = input('Digite sua escolha: ')                         #variável local que representa a escolha do usuário
     linha()
     return opc
@@ -32,12 +31,18 @@ while True:                                                     #loop para mante
     op = menu()                                                 #variável global que representa a escolha do usuário
     match op:
         case '1':
-            print('A Síndrome de Kessler é um cenário teórico no qual o volume de lixo espacial na órbita baixa da Terra (LEO) se torna tão denso que colisões entre objetos geram uma reação em cadeia. Cada colisão cria milhares de novos fragmentos, resultando em um crescimento exponencial de detritos que torna a órbita inutilizável.')
+            print('A Síndrome de Kessler é um cenário no qual o volume de lixo espacial na órbita baixa da Terra (LEO) se torna tão denso que colisões entre objetos geram uma reação em cadeia. Cada colisão cria milhares de novos fragmentos, resultando em um crescimento exponencial de detritos que torna a órbita inutilizável.')
             print('Isso pode representar um risco significativo para satélites, estações espaciais e futuras missões espaciais, além de dificultar o acesso ao espaço.')
             input('------| Pressione Enter para voltar para o Menu |------')
+
         case '2':
+            print('A solução OrbClear propõe o uso de um sistema de limpeza espacial que utiliza satélites equipados com tecnologia avançada para capturar, remover detritos espaciais em órbita e retornar para a Terra para reciclá-los. Esses satélites seriam capazes de identificar, rastrear e coletar os detritos, reduzindo assim o risco de colisões e contribuindo para a segurança espacial.')
+            print('A OrbClear representa uma abordagem inovadora para enfrentar a síndrome de Kessler e garantir as operações espaciais no futuro, além de promover a sustentabilidade e a economia circular.')
+            input('------| Pressione Enter para voltar para o Menu |------')
+
+        case '3':
             r_user.clear                                        #reseta as respostas do usuário
-            print('QUIZ: Teste seus conhecimentos sobre a Síndrome de Kessler!')
+            print('QUIZ: Agora você vai responder a um teste de 5 perguntinhas sobre a síndrome de Kessler!')
 
             # Questão 1
 
@@ -117,16 +122,41 @@ while True:                                                     #loop para mante
             # Finalização
             linha()
             print('FIM DO QUIZ!')
+
         case '4':
-            print('Opção 4 escolhida')
+            if len(r_user) == 0:
+                print('Você ainda não realizou o quiz. Volte quando estiver realizado!')
+            else:
+                n_r_c = 0  # Número Respostas Corretas - Quantidade de respostas corretas do usuário
+                q_e = []   # Questões Erradas - Números que representam as questões erradas pelo usuário
+                for i in range (len(r_gabarito)):      # Estrutura contadora de respostar corretas
+                    if r_user[i] == r_gabarito[i]:
+                        n_r_c += 1
+                    else:
+                        q_e.append(i+1)
+                if n_r_c < 5:
+                    print(f'Você acertou um total de {n_r_c} perguntas!')
+                    if n_r_c <= 2:
+                        print('Você ainda não conhece bem o problema. A Síndrome de Kessler pode comprometer tecnologias essenciais que usamos todos os dias.')
+                    else:
+                        print('Você entende os riscos principais. O aumento dos detritos espaciais é uma ameaça real para satélites e futuras missões espaciais.')
+                    decisao = input('Deseja saber as questões que precisa acertar? S / N').upper
+                    while decisao != 'S' and decisao != 'N':   # Valida a decisão do usuário
+                        print('Por favor, digite uma resposta válida. "S" para sim, "N" para não')
+                        decisao = input('Deseja saber as questões que precisa acertar? S / N').upper
+                    if decisao == 'S':
+                        print('Questões a acertar:')
+                        for i in q_e:
+                            print(f'Questão {i}')
+                else:
+                    print('PARABÉNS!!! Você acertou todas as respostas do Quiz!')
+                    print('Você compreende a gravidade da Síndrome de Kessler e a necessidade de prevenção.')
+
         case '5':
-            print('A solução OrbClear propõe o uso de um sistema de limpeza espacial que utiliza satélites equipados com tecnologia avançada para capturar, remover detritos espaciais em órbita e retornar para a Terra para reciclá-los. Esses satélites seriam capazes de identificar, rastrear e coletar os detritos, reduzindo assim o risco de colisões e contribuindo para a segurança espacial.')
-            print('A OrbClear representa uma abordagem inovadora para enfrentar a síndrome de Kessler e garantir a as operações espaciais no futuro, além de promover a sustentabilidade ambiental e a economia circular.')
-            input('------| Pressione Enter para voltar para o Menu |------')
-        case '6':
-            print('Programa encerrado!')
+            print('Programa encerrado, obrigado(a) por participar!')
             linha()
             break
+
         case _:
             print('Por favor, digite uma opção válida')
             print('Você deve digitar o número que represente sua escolha')
