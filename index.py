@@ -140,10 +140,10 @@ while True:                                                     #loop para mante
                         print('Você ainda não conhece bem o problema. A Síndrome de Kessler pode comprometer tecnologias essenciais que usamos todos os dias.')
                     else:
                         print('Você entende os riscos principais. O aumento dos detritos espaciais é uma ameaça real para satélites e futuras missões espaciais.')
-                    decisao = input('Deseja saber as questões que precisa acertar? S / N').upper
+                    decisao = input('Deseja saber as questões que precisa acertar? S / N').upper()
                     while decisao != 'S' and decisao != 'N':   # Valida a decisão do usuário
                         print('Por favor, digite uma resposta válida. "S" para sim, "N" para não')
-                        decisao = input('Deseja saber as questões que precisa acertar? S / N').upper
+                        decisao = input('Deseja saber as questões que precisa acertar? S / N').upper()
                     if decisao == 'S':
                         print('Questões a acertar:')
                         for i in q_e:
