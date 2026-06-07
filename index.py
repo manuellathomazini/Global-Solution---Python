@@ -15,12 +15,15 @@ def menu():                                                     #função que ex
     linha()
     return opc
 
-def validar(r):                                                     #função que valida a resposta do usuário, garantindo que seja uma das opções válidas
-    r_validas = ['A', 'B', 'C', 'D']                                #respostas válidas para o quiz
+def validar(r):                                                 #função que valida a resposta do usuário, garantindo que seja uma das opções válidas
+    r_validas = ['A', 'B', 'C', 'D']                            #respostas válidas para o quiz
     if r in r_validas:
         return True
     else:
         return False
+
+def voltar():                                                   #função para retornar ao menu
+    input('------| Pressione Enter para voltar para o Menu |------')
 
 r_user = []                                                     #lista global para armazenar as respostas do usuário ao quiz
 r_gabarito = ['B', 'C', 'B', 'A', 'D']                          #lista global que representa a ordem do gabarito do quiz
@@ -33,12 +36,12 @@ while True:                                                     #loop para mante
         case '1':
             print('A Síndrome de Kessler é um cenário no qual o volume de lixo espacial na órbita baixa da Terra (LEO) se torna tão denso que colisões entre objetos geram uma reação em cadeia. Cada colisão cria milhares de novos fragmentos, resultando em um crescimento exponencial de detritos que torna a órbita inutilizável.')
             print('Isso pode representar um risco significativo para satélites, estações espaciais e futuras missões espaciais, além de dificultar o acesso ao espaço.')
-            input('------| Pressione Enter para voltar para o Menu |------')
+            voltar()
 
         case '2':
             print('A solução OrbClear propõe o uso de um sistema de limpeza espacial que utiliza satélites equipados com tecnologia avançada para capturar, remover detritos espaciais em órbita e retornar para a Terra para reciclá-los. Esses satélites seriam capazes de identificar, rastrear e coletar os detritos, reduzindo assim o risco de colisões e contribuindo para a segurança espacial.')
             print('A OrbClear representa uma abordagem inovadora para enfrentar a síndrome de Kessler e garantir as operações espaciais no futuro, além de promover a sustentabilidade e a economia circular.')
-            input('------| Pressione Enter para voltar para o Menu |------')
+            voltar()
 
         case '3':
             r_user.clear()                                        #reseta as respostas do usuário
@@ -122,6 +125,7 @@ while True:                                                     #loop para mante
             # Finalização
             linha()
             print('FIM DO QUIZ!')
+            voltar()
 
         case '4':
             if len(r_user) == 0:
@@ -151,6 +155,7 @@ while True:                                                     #loop para mante
                 else:
                     print('PARABÉNS!!! Você acertou todas as respostas do Quiz!')
                     print('Você compreende a gravidade da Síndrome de Kessler e a necessidade de prevenção.')
+            voltar()
 
         case '5':
             print('Programa encerrado, obrigado(a) por participar!')
