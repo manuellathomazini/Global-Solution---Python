@@ -44,7 +44,7 @@ def validar(r):                                                 #função que va
         return False
 
 def voltar():                                                   #função para retornar ao menu de forma controlada, garantindo que o usuário tenha tempo de ler o conteúdo antes de voltar
-    input('------| Pressione "Enter" para voltar para o Menu |------')
+    input('\n------| Pressione "Enter" para voltar para o Menu |------\n')
 
 # --- Início do programa ---
 
@@ -246,11 +246,11 @@ while True:                                                     #loop para mante
 
         case '10':
             print('-----| STATUS DE DETRITOS |-----')
-            print(f'Detectados: {detectados}')
-            print(f'Na rede de captura: {capturados}')
-            print(f'Na cápsula: {capsula}')
-            print(f'No ponto de retorno: {retornados}')
-            print(f'Foram reciclados: {n_reciclados} --> {reciclados}')
+            print(f'\nDetectados: {detectados}')
+            print(f'\nNa rede de captura: {capturados}')
+            print(f'\nNa cápsula: {capsula}')
+            print(f'\nNo ponto de retorno: {retornados}')
+            print(f'\nForam reciclados: {n_reciclados} --> {reciclados}')
             linha()
             voltar()
 
