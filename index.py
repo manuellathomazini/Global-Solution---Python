@@ -1,16 +1,37 @@
 # --- Predefinições de variáveis globais e funções para o programa ---
+import time
 
+#listas e variáveis
+r_user = []                                                     #lista global para armazenar as respostas do usuário ao quiz
+r_gabarito = ['B', 'C', 'B', 'A', 'D']                          #lista global que representa a ordem do gabarito do quiz
+detectados = []                                                 #lista global que representa os detritos que foram identificados como alvos para captura
+capturados = []                                                 #lista global que representa os detritos que foram capturados
+capsula = []                                                    #lista global que representa os detritos armazenados na cápsula
+retornados = []                                                 #lista global que representa os detritos retornados para a Terra
+reciclados = []                                                 #lista global que representa os detritos enviados para reciclagem
+n_reciclados = 0                                                #variável global que representa o número total de detritos reciclados
+
+#funções
 def linha():                                                    #função que gera uma linha para melhor organização visual
     print('-'*40)
 
 def menu():                                                     #função que exibe um menu para o usuário e retorna a opção escolhida
     linha()
     print('Escolha entre as opções abaixo:')
+    print('-----| Opções de Conteúdo |-----')
     print('1 - Conteúdo sobre a Síndrome de Kessler')
     print('2 - Solução OrbClear')
     print('3 - Quiz de conhecimento sobre a Síndrome de Kessler')
-    print('4 - Seus Resultados')
-    print('5 - Encerrar o programa')
+    print('4 - Seus Resultados do Quiz')
+    print('\n-----| Opções de Protótipo |-----')
+    print('5 - Detectar detrito')
+    print('6 - Capturar detrito')
+    print('7 - Armazenar na cápsula')
+    print('8 - Enviar cápsula para Terra')
+    print('9 - Enviar para reciclagem')
+    print('10 - Status de detritos')
+    print('\n0 - Encerrar o programa')
+    linha()
     opc = input('Digite sua escolha: ')                         #variável local que representa a escolha do usuário
     linha()
     return opc
@@ -22,11 +43,8 @@ def validar(r):                                                 #função que va
     else:
         return False
 
-def voltar():                                                   #função para retornar ao menu
-    input('------| Pressione Enter para voltar para o Menu |------')
-
-r_user = []                                                     #lista global para armazenar as respostas do usuário ao quiz
-r_gabarito = ['B', 'C', 'B', 'A', 'D']                          #lista global que representa a ordem do gabarito do quiz
+def voltar():                                                   #função para retornar ao menu de forma controlada, garantindo que o usuário tenha tempo de ler o conteúdo antes de voltar
+    input('------| Pressione "Enter" para voltar para o Menu |------')
 
 # --- Início do programa ---
 
@@ -158,10 +176,86 @@ while True:                                                     #loop para mante
             voltar()
 
         case '5':
+            nome = input('Nome do detrito: ').strip()
+            if not nome:  #validação para garantir que o nome do detrito não seja vazio
+                print('Nenhum detrito foi detectado.')
+            else:
+                detectados.append(nome)
+                print(f'Detrito "{nome}" detectado!')
+            voltar()
+
+        case '6':
+            if len(detectados) == 0:
+                print('Nenhum detrito foi detectado para realizar uma captura.')
+            elif len(detectados) == 1:
+                detrito = detectados.pop(0)
+                capturados.append(detrito)
+                print(f'"{detrito}" capturado!')
+            else:
+                print('\nDetritos detectados:')
+                for i, detrito in enumerate(detectados, 1):
+                    print(f'{i} - {detrito}')
+                index = int(input('Digite APENAS o número que representa o detrito que será capturado: ')) - 1
+                if index < len(detectados) and index >= 0:
+                    detrito = detectados.pop(index)
+                    capturados.append(detrito)
+                    print(f'"{detrito}" capturado!')
+                else:
+                    print('Opção inválida')
+            voltar()
+
+        case '7':
+            if len(capturados) == 0:
+                print('Nenhum detrito foi capturado para ser armazenado.')
+            else:
+                for i in range(len(capturados)):
+                    detrito = capturados.pop(0)
+                    capsula.append(detrito)
+                    print(f'{detrito} armazenado na cápsula!')
+            voltar()
+
+        case '8':
+            if len(capsula) == 0:
+                print('Cápsula vazia.')
+            else:
+                retornados += capsula
+                capsula.clear()
+                print('Cápsula a caminho da Terra!')
+                print('Retornando...')
+                for i in range (4):
+                    time.sleep(1)
+                    print('...')
+                print('A cápsula retornou com SUCESSO e os detritos já podem ser enviados para a reciclagem!')
+
+            voltar()
+
+        case '9':
+            if len(retornados) == 0:
+                print('Nenhum detrito disponível em Terra.')
+            else:
+                reciclados += retornados
+                n_reciclados += len(retornados)
+                print(f'Os detritos {retornados} foram enviados para a reciclagem!')
+                retornados.clear()
+
+            voltar()
+
+        case '10':
+            print('-----| STATUS DE DETRITOS |-----')
+            print(f'Detectados: {detectados}')
+            print(f'Na rede de captura: {capturados}')
+            print(f'Na cápsula: {capsula}')
+            print(f'No ponto de retorno: {retornados}')
+            print(f'Foram reciclados: {n_reciclados} --> {reciclados}')
+            linha()
+            voltar()
+
+        case '0':
             print('Programa encerrado, obrigado(a) por participar!')
             linha()
             break
 
         case _:
             print('Por favor, digite uma opção válida')
-            print('Você deve digitar o número que represente sua escolha')
+            print('Você deve digitar APENAS o número que represente sua escolha')
+            voltar()
