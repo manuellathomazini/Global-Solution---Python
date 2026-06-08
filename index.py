@@ -195,13 +195,17 @@ while True:                                                     #loop para mante
                 print('\nDetritos detectados:')
                 for i, detrito in enumerate(detectados, 1):
                     print(f'{i} - {detrito}')
-                index = int(input('Digite APENAS o número que representa o detrito que será capturado: ')) - 1
-                if index < len(detectados) and index >= 0:
-                    detrito = detectados.pop(index)
-                    capturados.append(detrito)
-                    print(f'"{detrito}" capturado!')
+                index = input('Digite APENAS o número que representa o detrito que será capturado: ')
+                if index.isdigit():
+                    index = int(index) - 1  # Ajusta o índice para acessar a lista corretamente
+                    if index < len(detectados) and index >= 0:
+                        detrito = detectados.pop(index)
+                        capturados.append(detrito)
+                        print(f'"{detrito}" capturado!')
+                    else:
+                        print('Opção inválida.')
                 else:
-                    print('Opção inválida')
+                    print('Por favor, digite um número válido. Não digite o nome do detrito, apenas o número que representa ele na lista.')
             voltar()
 
         case '7':
