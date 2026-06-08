@@ -151,7 +151,7 @@ while True:                                                     #loop para mante
             else:
                 n_r_c = 0  # Número Respostas Corretas - Quantidade de respostas corretas do usuário
                 q_e = []   # Questões Erradas - Números que representam as questões erradas pelo usuário
-                for i in range (len(r_gabarito)):      # Estrutura contadora de respostar corretas
+                for i in range (len(r_gabarito)):      # Percorre cada questão comparando resposta do usuário com o gabarito
                     if r_user[i] == r_gabarito[i]:
                         n_r_c += 1
                     else:
@@ -196,8 +196,8 @@ while True:                                                     #loop para mante
                 for i, detrito in enumerate(detectados, 1):
                     print(f'{i} - {detrito}')
                 index = input('Digite APENAS o número que representa o detrito que será capturado: ')
-                if index.isdigit():
-                    index = int(index) - 1  # Ajusta o índice para acessar a lista corretamente
+                if index.isdigit():  # valida se a entrada é numérica antes de converter
+                    index = int(index) - 1  # ajusta o índice para acessar a lista corretamente
                     if index < len(detectados) and index >= 0:
                         detrito = detectados.pop(index)
                         capturados.append(detrito)
@@ -213,7 +213,7 @@ while True:                                                     #loop para mante
                 print('Nenhum detrito foi capturado para ser armazenado.')
             else:
                 for i in range(len(capturados)):
-                    detrito = capturados.pop(0)
+                    detrito = capturados.pop(0)  # remove sempre o primeiro para esvaziar a lista progressivamente
                     capsula.append(detrito)
                     print(f'{detrito} armazenado na cápsula!')
             voltar()
